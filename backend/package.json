@@ -1,0 +1,20 @@
+{
+    "name": "would-you-rather-apollo-backend",
+    "version": "1.0.0",
+    "description": "Backend server for the \"Would You Rather?\" game",
+    "main": "server.js",
+    "scripts": {
+        "server": "nodemon server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "apollo-server-express": "^2.9.15",
+        "express": "^4.17.1",
+        "graphql": "^14.5.8",
+        "mongoose": "^5.8.5"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.2"
+    }
+}
