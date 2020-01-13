@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import { Router } from "@reach/router"
 
 import GlobalStyle from "../styles/GlobalStyle"
-
 import Home from "../pages/Home"
 import NotFound from "../pages/NotFound"
 

@@ -89,7 +89,6 @@ const StyledNavbar = styled.nav`
   align-items: center;
   justify-content: space-between;
   background-color: rgb(66, 59, 114);
-  padding: 0 0 0 2rem;
   color: #fff;
   z-index: 1;
   min-height: var(--navbar-height);
@@ -101,12 +100,30 @@ const StyledNavbar = styled.nav`
   a {
     font-size: calc(0.7rem + 1vmin);
   }
+  li {
+    padding: 0 0.5rem;
+  }
 `
 
 const StyledNavUL = styled.ul`
+  display: flex;
+  align-items: center;
   list-style: none;
-  margin: auto;
   width: 100%;
+  height: 60px;
+  li {
+    /* min-width: 20vw; */
+    height: 100%;
+    &:hover {
+      background-color: #333;
+    }
+  }
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
 `
 
 const StyledNavLink = styled(NavLink)`
