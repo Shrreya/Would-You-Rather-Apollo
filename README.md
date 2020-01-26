@@ -16,6 +16,6 @@ To get started:
 
 To get started:
 * Switch to the frontend: `cd frontend`
-* Install dependencies: `yarn install`
-* Start the client: `yarn start`
+* Install dependencies: `npm i`
+* Start the client: `npm start`
 * Access the application: http://localhost:3000/
