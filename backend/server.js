@@ -23,5 +23,3 @@ app.listen({ port }, () => {
     `Server running on http://localhost:${port}${apolloServer.graphqlPath}`
   )
 })
-
-var aaaa = 20
