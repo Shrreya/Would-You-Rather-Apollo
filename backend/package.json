@@ -4,7 +4,8 @@
   "description": "Backend server for the \"Would You Rather?\" game",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server.js"
+    "server": "nodemon server.js",
+    "eslint-check": "eslint --print-config ./server.js | eslint-config-prettier-check"
   },
   "author": "",
   "license": "ISC",
