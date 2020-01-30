@@ -1,12 +1,6 @@
 import React from "react"
 import { Link } from "@reach/router"
 
-// const PartialNavLink = props => (
-//   <Link getProps={isPartiallyActive} {...props}>
-//     {props.children}
-//   </Link>
-// )
-
 const NavLink = props => (
   <Link
     getProps={({ isCurrent }) => {
