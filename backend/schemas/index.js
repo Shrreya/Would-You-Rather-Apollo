@@ -24,7 +24,8 @@ const typeDefs = gql`
     },
     type Mutation {
         addUser(userName: String!, firstName: String!, lastName: String!): User,
-        addQuestion(author: String!, optionOneText: String!, optionTwoText: String!): Question
+        addQuestion(author: String!, optionOneText: String!, optionTwoText: String!): Question,
+        saveAnswer(questionId: String!, userName: String!, option: String!): Question
     }
 `
 

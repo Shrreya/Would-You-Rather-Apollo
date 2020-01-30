@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const optionModel = new Schema ({
+const optionModel = new Schema({
     votes: {
         type: [String],
         required: true

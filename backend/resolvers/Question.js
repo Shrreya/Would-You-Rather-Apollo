@@ -1,4 +1,5 @@
 const Question = require('../models/Question')
+const mongoose = require('mongoose')
 
 const questionResolvers = {
     Query: {
@@ -19,6 +20,14 @@ const questionResolvers = {
                 }
             })
             return newQuestion.save()
+        },
+        saveAnswer: async (parent, answer) => {
+            let questionToUpdate = await Question.findOne({
+                _id: mongoose.Types.ObjectId(answer.questionId)
+            })
+            // TODO: First check if user's vote exists (each user gets 1 vote only)
+            questionToUpdate[answer.option].votes.push(answer.userName)
+            return questionToUpdate.save()
         }
     }
 }
