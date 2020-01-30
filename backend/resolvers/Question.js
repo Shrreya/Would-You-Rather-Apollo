@@ -1,5 +1,6 @@
-const Question = require("../models/Question")
 const mongoose = require("mongoose")
+
+const Question = require("../models/Question")
 
 const questionResolvers = {
   Query: {
