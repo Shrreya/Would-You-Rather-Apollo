@@ -1,35 +1,35 @@
 import React, { Component } from "react"
 import { Router } from "@reach/router"
 
-import GlobalStyle from "../styles/GlobalStyle"
-import Home from "../pages/Home"
-import NotFound from "../pages/NotFound"
+import GlobalStyle from "./styles/GlobalStyle"
+import Home from "./pages/Home"
+import NotFound from "./pages/NotFound"
 
 import { library } from "@fortawesome/fontawesome-svg-core"
 import {
   faCheckSquare,
   faCheckCircle,
-  faFileCode,
   faUser,
   faEnvelope,
   faPencilAlt,
   faLock,
   faEdit,
   faHome,
-  faLink
+  faAngleUp,
+  faAngleDown
 } from "@fortawesome/free-solid-svg-icons"
 
 library.add(
   faCheckSquare,
   faCheckCircle,
-  faFileCode,
   faUser,
   faEnvelope,
   faPencilAlt,
   faLock,
   faEdit,
   faHome,
-  faLink
+  faAngleUp,
+  faAngleDown
 )
 
 class App extends Component {

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { Component } from "react"
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
@@ -7,79 +7,106 @@ import NavLink from "./NavLink"
 import NavigationLinks from "../../constants/NavigationLinks"
 import ProfileLinks from "../../constants/ProfileLinks"
 
-const Navbar = () => {
-  const [profileOpen, setProfileOpen] = useState(false)
+class Navbar extends Component {
+  constructor(props) {
+    super(props)
 
-  const toggleProfile = () => {
-    setProfileOpen(profileOpen => !profileOpen)
+    this.state = {
+      profileOpen: false,
+      isLoggedIn: false  
+    }
   }
 
-  const logoutHandler = () => {
+  toggleProfile = () => {
+    const currentState = this.state.profileOpen
+    this.setState({ profileOpen: !currentState })
+  }
+
+  logoutHandler = () => {
     // context.logout()
-    toggleProfile()
+    this.toggleProfile()
   }
 
   // const context = useContext(AuthContext)
   // console.log("Navbar context", context)
 
-  const loggedInUser =
-    1 + 1 === 2 ? (
-      <React.Fragment>
-        <StyledProfile
-          onClick={toggleProfile}
-          aria-checked={profileOpen}
-          aria-label="Profile"
-        >
-          <figure>
-            <StyledSVGIcon icon={["fas", "user"]} />
-          </figure>
-        </StyledProfile>
-        <StyledProfileUL className={profileOpen ? "open" : "closed"}>
-          <li>Username</li>
-          <li>
-            <StyledNavLink to="/" onClick={logoutHandler}>
-              Logout
-            </StyledNavLink>
-          </li>
-        </StyledProfileUL>
-      </React.Fragment>
-    ) : (
-      <React.Fragment>
-        <StyledProfile
-          onClick={toggleProfile}
-          aria-checked={profileOpen}
-          aria-label="Profile"
-        >
-          <figure>
-            <StyledSVGIcon icon={["fas", "user"]} />
-          </figure>
-        </StyledProfile>
-        <StyledProfileUL className={profileOpen ? "open" : "closed"}>
-          {ProfileLinks.map(item => {
-            return (
-              <li key={item.id}>
-                <StyledNavLink to={item.path}>{item.text}</StyledNavLink>
-              </li>
-            )
-          })}
-        </StyledProfileUL>
-      </React.Fragment>
-    )
+  NavbarItems = () => {
+    if (this.state.isLoggedIn) {
+      return (
+        <StyledNavbar>
+          <StyledNavUL>
+            {NavigationLinks.map(link => {
+              return (
+                <li key={link.id}>
+                  <StyledNavLink to={link.path}>{link.text}</StyledNavLink>
+                </li>
+              )
+            })}
+          </StyledNavUL>
+          {this.UserProfile()}
+        </StyledNavbar>
+      )
+    } else {
+      return <StyledNavbarFlexEnd>{this.UserProfile()}</StyledNavbarFlexEnd>
+    }
+  }
 
-  return (
-    <StyledNavbar>
-      <StyledNavUL>
-        {NavigationLinks.map((link, index) => {
-          return (
-            <li key={index}>
-              <StyledNavLink to={link.path}>{link.text}</StyledNavLink>
+  UserProfile = () => {
+    if (this.state.isLoggedIn) {
+      return (
+        <React.Fragment>
+          <StyledProfile
+            onClick={this.toggleProfile}
+            aria-checked={this.state.profileOpen}
+            aria-label="Profile"
+          >
+            <figure>
+              <StyledSVGIcon icon={["fas", "user"]} />
+            </figure>
+          </StyledProfile>
+          <StyledProfileUL
+            className={this.state.profileOpen ? "open" : "closed"}
+          >
+            <li>Username</li>
+            <li>
+              <StyledNavLink to="/" onClick={this.logoutHandler}>
+                Logout
+              </StyledNavLink>
             </li>
-          )
-        })}
-      </StyledNavUL>
-      {loggedInUser}
-    </StyledNavbar>
-  )
+          </StyledProfileUL>
+        </React.Fragment>
+      )
+    } else {
+      return (
+        <React.Fragment>
+          <StyledProfile
+            onClick={this.toggleProfile}
+            aria-checked={this.state.profileOpen}
+            aria-label="Profile"
+          >
+            <figure>
+              <StyledSVGIcon icon={["fas", "user"]} />
+            </figure>
+          </StyledProfile>
+          <StyledProfileUL
+            className={this.state.profileOpen ? "open" : "closed"}
+          >
+            {ProfileLinks.map(item => {
+              return (
+                <li key={item.id}>
+                  <StyledNavLink to={item.path}>{item.text}</StyledNavLink>
+                </li>
+              )
+            })}
+          </StyledProfileUL>
+        </React.Fragment>
+      )
+    }
+  }
+
+  render() {
+    return this.NavbarItems()
+  }
 }
 
 const StyledNavbar = styled.nav`
@@ -89,7 +116,30 @@ const StyledNavbar = styled.nav`
   align-items: center;
   justify-content: space-between;
   background-color: rgb(66, 59, 114);
-  color: #fff;
+  color: var(--mainWhite);
+  z-index: 1;
+  min-height: var(--navbar-height);
+  box-shadow: var(--boxShadow-1);
+  ul {
+    padding: 0;
+    list-style: none;
+  }
+  a {
+    font-size: calc(0.7rem + 1vmin);
+  }
+  li {
+    padding: 0 0.5rem;
+  }
+`
+
+const StyledNavbarFlexEnd = styled.nav`
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: rgb(66, 59, 114);
+  color: var(--mainWhite);
   z-index: 1;
   min-height: var(--navbar-height);
   box-shadow: var(--boxShadow-1);
@@ -110,14 +160,14 @@ const StyledNavUL = styled.ul`
   align-items: center;
   list-style: none;
   width: auto;
-  height: 60px;
+  height: var(--navbar-checkbox);
   li {
     height: 100%;
     /* width: 100%; */
     width: auto;
 
     &:hover {
-      background-color: #333;
+      background-color: var(--mainBlack);
     }
   }
   a {
@@ -138,7 +188,7 @@ const StyledProfile = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
-  width: 60px;
+  width: var(--navbar-checkbox);
   cursor: pointer;
 `
 

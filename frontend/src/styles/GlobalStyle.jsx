@@ -47,6 +47,40 @@ const GlobalStyle = createGlobalStyle`
     word-break: break-word;
     text-rendering: optimizeLegibility;
   }
+
+  /* Utility classes */
+
+  .padding-topbot-1 {
+    padding: 0.5rem 0;
+  }
+
+  .padding-topbot-2 {
+    padding: 1rem 0;
+  }
+
+  .padding-topbot-3 {
+    padding: 1.5rem 0;
+  }
+
+  .padding-topbot-4 {
+    padding: 2rem 0;
+  }
+
+  .margin-topbot-1 {
+    margin: 0.5rem 0;
+  }
+
+  .margin-topbot-2 {
+    margin: 1rem 0;
+  }
+
+  .margin-topbot-3 {
+    margin: 1.5rem 0;
+  }
+
+  .margin-topbot-4 {
+    margin: 2rem 0;
+  }
 `
 
 export default GlobalStyle

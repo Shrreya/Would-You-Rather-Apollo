@@ -16,10 +16,7 @@ const NotFoundPage = () => (
 )
 
 const Header = styled.header`
-  min-height: calc(
-    100vh - var(--navbar-height) - var(--footer-height) -
-      var(--footerParagraph-text)
-  );
+  min-height: inherit;
   display: flex;
   justify-content: center;
   align-items: center;
