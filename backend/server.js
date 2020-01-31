@@ -2,6 +2,7 @@ require("dotenv").config({ path: ".env.development" })
 const express = require("express")
 const { ApolloServer } = require("apollo-server-express")
 const mongoose = require("mongoose")
+const cors = require("cors")
 
 const typeDefs = require("./schemas/index")
 const resolvers = require("./resolvers/index")
@@ -16,6 +17,7 @@ mongoose.connection.on("error", error => console.error(error))
 const apolloServer = new ApolloServer({ typeDefs, resolvers })
 
 const app = express()
+app.use(cors())
 apolloServer.applyMiddleware({ app })
 
 app.listen({ port }, () => {

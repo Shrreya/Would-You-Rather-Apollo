@@ -5,12 +5,14 @@
   "main": "server.js",
   "scripts": {
     "server": "nodemon server.js",
-    "eslint-check": "eslint --print-config ./server.js | eslint-config-prettier-check"
+    "eslint-check": "eslint --print-config ./server.js | eslint-config-prettier-check",
+    "lint": "eslint ."
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^2.9.16",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "graphql": "^14.6.0",
@@ -22,5 +24,8 @@
     "eslint-plugin-prettier": "^3.1.2",
     "nodemon": "^2.0.2",
     "prettier": "^1.19.1"
+  },
+  "engines": {
+    "node": "12.14.x"
   }
 }
