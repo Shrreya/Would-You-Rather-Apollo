@@ -109,11 +109,13 @@ const StyledNavUL = styled.ul`
   display: flex;
   align-items: center;
   list-style: none;
-  width: 100%;
+  width: auto;
   height: 60px;
   li {
-    /* min-width: 20vw; */
     height: 100%;
+    /* width: 100%; */
+    width: auto;
+
     &:hover {
       background-color: #333;
     }

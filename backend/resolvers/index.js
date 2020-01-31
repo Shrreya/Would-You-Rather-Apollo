@@ -1,5 +1,5 @@
-const userResolvers = require('./User')
-const questionResolvers = require('./Question')
+const userResolvers = require("./User")
+const questionResolvers = require("./Question")
 
 const resolvers = [userResolvers, questionResolvers]
 
