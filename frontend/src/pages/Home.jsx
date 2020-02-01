@@ -82,7 +82,7 @@ class Home extends Component {
                         <StyledFontAwesomeIcon icon={["fas", "angle-down"]} />
                       )}
                     </RelativeIconContainer>
-                    <PrimaryButton marginAuto>Log In</PrimaryButton>
+                    <PrimaryButton marginauto="true">Log In</PrimaryButton>
                   </StyledArticle>
                 </StyledContainer>
               </Layout>

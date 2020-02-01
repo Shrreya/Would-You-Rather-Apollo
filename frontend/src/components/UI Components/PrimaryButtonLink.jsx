@@ -1,6 +1,7 @@
+import { Link } from "@reach/router"
 import styled from "styled-components"
 
-export default styled.button`
+export default styled(Link)`
   display: block;
   width: ${props => (props.full ? "100%" : "fit-content")};
   margin: ${props => (props.marginauto ? "auto" : "unset")};
