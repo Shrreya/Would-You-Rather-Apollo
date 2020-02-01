@@ -143,9 +143,6 @@ const StyledDropdown = styled.select`
   border-radius: var(--borderRadius-1);
   transition: width 0.1s ease, -webkit-box-shadow 0.1s ease;
   -webkit-transition: width 0.1s ease, -webkit-box-shadow 0.1s ease;
-  transition: box-shadow 0.1s ease, width 0.1s ease;
-  transition: box-shadow 0.1s ease, width 0.1s ease,
-    -webkit-box-shadow 0.1s ease;
 
   appearance: none;
   -moz-appearance: none;
@@ -162,12 +159,10 @@ const RelativeIconContainer = styled.div`
 `
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translate(-50%, 0%);
-  color: rgb(139, 139, 139);
-  height: 100%;
+  -webkit-transform: translate(-200%, 0%);
+  -ms-transform: translate(-200%, 0%);
+  transform: translate(-200%, 0%);
+  pointer-events: none;
 `
 
 const GET_USERS = gql`
