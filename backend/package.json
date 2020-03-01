@@ -4,7 +4,7 @@
   "description": "Backend server for the \"Would You Rather?\" game",
   "main": "server.js",
   "scripts": {
-    "server": "nodemon server.js",
+    "server": "nodemon -r esm server.js",
     "eslint-check": "eslint --print-config ./server.js | eslint-config-prettier-check",
     "lint": "eslint ."
   },
@@ -12,10 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "apollo-server-express": "^2.9.16",
+    "bcrypt": "^4.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "esm": "^3.2.25",
     "express": "^4.17.1",
     "graphql": "^14.6.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.10"
   },
   "devDependencies": {

@@ -1,27 +1,41 @@
-require("dotenv").config({ path: ".env.development" })
-const express = require("express")
-const { ApolloServer } = require("apollo-server-express")
-const mongoose = require("mongoose")
-const cors = require("cors")
+import dotenv from "dotenv"
+import express from "express"
+import cors from "cors"
+import mongoose from "mongoose"
+import { ApolloServer } from "apollo-server-express"
+dotenv.config({ path: ".env.development" })
 
-const typeDefs = require("./schemas/index")
-const resolvers = require("./resolvers/index")
-const DB_URI = process.env.MONGODB
-const port = process.env.PORT
+import typeDefs from "./schemas/index"
+import resolvers from "./resolvers/index"
+// Not using verifyUser yet, can pass things in context I think
+const { verifyUser } = require("./helper/context/index")
+const { MONGODB, PORT } = process.env
 
 mongoose.set("useCreateIndex", true)
-mongoose.connect(DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(MONGODB, { useNewUrlParser: true, useUnifiedTopology: true })
 mongoose.connection.once("open", () => console.log("Connected to MongoDB"))
 mongoose.connection.on("error", error => console.error(error))
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers })
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  context: ({ req }) => ({ req })
+})
 
 const app = express()
+// Not exactly sure what we need express.json for, something with body?
+app.use(express.json())
 app.use(cors())
-apolloServer.applyMiddleware({ app })
+apolloServer.applyMiddleware({ app, path: "/api" })
 
-app.listen({ port }, () => {
+// Should we have an app.use here? Better than nothing maybe?
+
+app.use("/", (req, res) => {
+  res.send({ message: "Hello and welcome to the GraphQL API Server" })
+})
+
+app.listen({ port: PORT }, () => {
   console.log(
-    `Server running on http://localhost:${port}${apolloServer.graphqlPath}`
+    `Server running on http://localhost:${PORT}${apolloServer.graphqlPath}`
   )
 })

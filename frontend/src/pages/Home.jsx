@@ -134,7 +134,7 @@ const StyledDropdown = styled.select`
   outline: 0;
   transform: rotateZ(0);
   -webkit-transform: rotateZ(0);
-  background: #fff;
+  background-color: var(--mainWhite);
   padding: 1rem 2rem 1rem 0.5rem;
   color: rgba(0, 0, 0, 0.87);
   box-shadow: none;

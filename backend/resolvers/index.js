@@ -1,6 +1,6 @@
-const userResolvers = require("./User")
-const questionResolvers = require("./Question")
+import userResolvers from "./User"
+import questionResolvers from "./Question"
 
 const resolvers = [userResolvers, questionResolvers]
 
-module.exports = resolvers
+export default resolvers

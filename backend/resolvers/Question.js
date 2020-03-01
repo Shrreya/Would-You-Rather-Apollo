@@ -1,10 +1,10 @@
-const mongoose = require("mongoose")
+import mongoose from "mongoose"
 
-const Question = require("../models/Question")
+import Question from "../models/Question"
 
 const questionResolvers = {
   Query: {
-    questions: () => Question.find({})
+    getQuestions: () => Question.find({})
   },
   Mutation: {
     addQuestion: (parent, question) => {
@@ -27,10 +27,10 @@ const questionResolvers = {
         _id: mongoose.Types.ObjectId(answer.questionId)
       })
       // TODO: First check if user's vote exists (each user gets 1 vote only)
-      questionToUpdate[answer.option].votes.push(answer.userName)
+      questionToUpdate[answer.option].votes.push(answer.username)
       return questionToUpdate.save()
     }
   }
 }
 
-module.exports = questionResolvers
+export default questionResolvers

@@ -1,29 +1,56 @@
-const { gql } = require("apollo-server-express")
+import { gql } from "apollo-server-express"
+
+// Why _id and not id?
 
 const typeDefs = gql`
   type User {
-    _id: ID
-    userName: String!
+    id: ID!
+    username: String!
+    password: String!
+    email: String!
     firstName: String!
     lastName: String!
   }
+
   type Question {
-    _id: ID
+    id: ID
     author: String!
     timestamp: String!
     optionOne: Option
     optionTwo: Option
   }
+
   type Option {
     votes: [String]
     text: String!
   }
+
   type Query {
-    users: [User]
-    questions: [Question]
+    getUsers: [User]
+    getUser(userId: ID!): User
+    getQuestions: [Question]
   }
+
+  type Token {
+    token: String!
+  }
+
   type Mutation {
-    addUser(userName: String!, firstName: String!, lastName: String!): User
+    loginUser(username: String!, password: String!): Token
+    editUser(
+      userId: ID!
+      username: String
+      password: String
+      email: String
+    ): User
+    deleteUser(userId: ID!): User
+    addUser(
+      username: String!
+      password: String!
+      email: String!
+      firstName: String!
+      lastName: String!
+    ): User
     addQuestion(
       author: String!
       optionOneText: String!
@@ -31,10 +58,10 @@ const typeDefs = gql`
     ): Question
     saveAnswer(
       questionId: String!
-      userName: String!
+      username: String!
       option: String!
     ): Question
   }
 `
 
-module.exports = typeDefs
+export default typeDefs
