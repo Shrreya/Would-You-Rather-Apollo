@@ -28,12 +28,6 @@ app.use(express.json())
 app.use(cors())
 apolloServer.applyMiddleware({ app, path: "/api" })
 
-// Should we have an app.use here? Better than nothing maybe?
-
-app.use("/", (req, res) => {
-  res.send({ message: "Hello and welcome to the GraphQL API Server" })
-})
-
 app.listen({ port: PORT }, () => {
   console.log(
     `Server running on http://localhost:${PORT}${apolloServer.graphqlPath}`
