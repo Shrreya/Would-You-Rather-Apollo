@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import styled from "styled-components"
 import { Query } from "react-apollo"
-import gql from "graphql-tag"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 
+import { GET_USERS } from "../queries/index"
 import Layout from "../components/Layout/Layout"
 import Loading from "../components/Home/Loading"
 import Error from "../components/Home/Error"
@@ -35,7 +35,7 @@ class Home extends Component {
     return (
       <Query query={GET_USERS}>
         {({ loading, error, data }) => {
-          console.log(data)
+          console.log("data", data)
 
           const renderContent = () => {
             if (error) {
@@ -70,9 +70,9 @@ class Home extends Component {
                         onChange={this.onUserSelected}
                         onClick={this.toggleList}
                       >
-                        {data.users.map(item => (
-                          <option key={item.userName} value={item.userName}>
-                            {item.userName}
+                        {data.getUsers.map(item => (
+                          <option key={item.username} value={item.username}>
+                            {item.username}
                           </option>
                         ))}
                       </StyledDropdown>
@@ -163,16 +163,6 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   -ms-transform: translate(-200%, 0%);
   transform: translate(-200%, 0%);
   pointer-events: none;
-`
-
-const GET_USERS = gql`
-  query {
-    users {
-      userName
-      firstName
-      lastName
-    }
-  }
 `
 
 export default Home
