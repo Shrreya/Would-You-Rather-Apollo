@@ -103,7 +103,8 @@ const Mutation = {
       console.log("newUser here:", newUser)
 
       return {
-        token: createToken(newUser, process.env.SECRET, "10m")
+        ...newUser._doc,
+        id: newUser._id
       }
     } catch (error) {
       console.log(error)
